@@ -95,13 +95,17 @@ export default class DBHelper {
       return response.json();
     }).then(fetchedReviews => {
       // if reviews are fetched
-      // TODO: store reviews on idb
+      // store reviews on idb
+      dbPromise.putReviews(fetchedReviews);
       return fetchedReviews;
     }).catch(networkError => {
       // if no reviews can be fetched
-      // TODO: try to get reviews from idb
-      console.log(`${networkError}`)
-      return null; // no reviews
+      // try to get reviews from idb
+      console.log(`${networkError}, trying idb`)
+      return dbPromise.getReviewsForRestaurant(restaurant_id).then(idbReviews => {
+        if (idbReviews.length < 1) return null; // no reviews
+        return idbReviews;
+      })
     })
   }
 
