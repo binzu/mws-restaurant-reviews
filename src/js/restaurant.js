@@ -166,7 +166,7 @@ const createReviewHTML = (review) => {
 
   const date = document.createElement('span');
   date.className = "review-date";
-  date.innerHTML = review.date;
+  date.innerHTML = new Date(review.createdAt).toLocaleDateString(); //review.date;
   header.appendChild(date);
 
   li.appendChild(header);
