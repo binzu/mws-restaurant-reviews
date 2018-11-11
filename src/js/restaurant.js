@@ -76,6 +76,7 @@ const fetchRestaurantFromURL = (callback) => {
 
 /**
  * Create restaurant HTML and add it to the webpage
+ * TODO: convert to React component template
  */
 const fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
@@ -97,11 +98,14 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
     fillRestaurantHoursHTML();
   }
   // fill reviews
-  fillReviewsHTML();
+  // fillReviewsHTML();
+  DBHelper.fetchReviewsByRestaurantId(restaurant.id)
+    .then(fillReviewsHTML);
 }
 
 /**
  * Create restaurant operating hours HTML table and add it to the webpage.
+ * TODO: convert to React component template
  */
 const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => {
   const hours = document.getElementById('restaurant-hours');
@@ -122,6 +126,7 @@ const fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hour
 
 /**
  * Create all reviews HTML and add them to the webpage.
+ * TODO: convert to React component template
  */
 const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
@@ -145,6 +150,7 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
 
 /**
  * Create review HTML and add it to the webpage.
+ * TODO: convert to React component template
  */
 const createReviewHTML = (review) => {
   const li = document.createElement('li');

@@ -26,6 +26,7 @@ export default class DBHelper {
    * Fetch all restaurants.
    */
 
+  //TODO: convert this method to use fetch and promise
   static fetchRestaurants(callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `${DBHelper.API_URL}/restaurants`);
@@ -63,6 +64,9 @@ export default class DBHelper {
     xhr.send();
   }
 
+  /**
+   * Fetch a restaurant by ID
+   */
   static fetchRestaurantById(id, callback) {
     fetch(`${DBHelper.API_URL}/restaurants/${id}`).then(response => {
       if (!response.ok) return Promise.reject("Restaurant couldn't be fetched from network");
@@ -80,6 +84,27 @@ export default class DBHelper {
       });
     });
   }
+
+  /**
+   * Fetch restaurant reviews by restaurant ID
+   * For this method, using fetch with promise
+   */
+  static fetchReviewsByRestaurantId(restaurant_id) {
+    return fetch(`${DBHelper.API_URL}/reviews/?restaurant_id=${restaurant_id}`).then(response => {
+      if (!response.ok) return Promise.reject("Reviews couldn't be fetched");
+      return response.json();
+    }).then(fetchedReviews => {
+      // if reviews are fetched
+      // TODO: store reviews on idb
+      return fetchedReviews;
+    }).catch(networkError => {
+      // if no reviews can be fetched
+      // TODO: try to get reviews from idb
+      console.log(`${networkError}`)
+      return null; // no reviews
+    })
+  }
+
 
   /**
    * Fetch restaurants by a cuisine type with proper error handling.
