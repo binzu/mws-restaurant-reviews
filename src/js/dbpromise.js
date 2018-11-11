@@ -15,13 +15,15 @@ const dbPromise = {
 
     /**
      * Save a restaurant or array of restaurants into idb, using promises.
+     * If second argument is true, data will be forcibly updated
      */
-    putRestaurants(restaurants) {
+    putRestaurants(restaurants, forceUpdate = false) {
       if (!restaurants.push) restaurants = [restaurants];
       return this.db.then(db => {
         const store = db.transaction('restaurants', 'readwrite').objectStore('restaurants');
         Promise.all(restaurants.map(networkRestaurant => {
           return store.get(networkRestaurant.id).then(idbRestaurant => {
+            if (forceUpdate) return store.put(networkRestaurant);
             if (!idbRestaurant || new Date(networkRestaurant.updatedAt) > new Date(idbRestaurant.updatedAt)) {
               return store.put(networkRestaurant);
             }
