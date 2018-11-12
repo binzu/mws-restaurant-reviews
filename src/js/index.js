@@ -12,6 +12,7 @@ L.Icon.Default.mergeOptions({
 });
 
 import '../scss/style.scss'
+import favoriteButton from './favorite-btn';
 
 let restaurants,
   neighborhoods,
@@ -167,6 +168,9 @@ const createRestaurantHTML = (restaurant) => {
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.setAttribute("alt", restaurant.name);
   li.append(image);
+
+  const favButton = favoriteButton(restaurant);
+  li.append(favButton);
 
   const div =  document.createElement('div');
   div.className = 'restaurant-detail';

@@ -11,6 +11,7 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 import '../scss/style.scss'
+import favoriteButton from './favorite-btn';
 
 let restaurant;
 var newMap;
@@ -92,6 +93,9 @@ const fillRestaurantHTML = (restaurant = self.restaurant) => {
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
+
+  const favorite = document.getElementById('restaurant-fav');
+  favorite.append(favoriteButton(restaurant));
 
   // fill operating hours
   if (restaurant.operating_hours) {
