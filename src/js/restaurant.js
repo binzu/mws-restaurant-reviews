@@ -12,6 +12,7 @@ L.Icon.Default.mergeOptions({
 });
 import '../scss/style.scss'
 import favoriteButton from './favorite-btn';
+import reviewForm from './reviews';
 
 let restaurant;
 var newMap;
@@ -143,13 +144,19 @@ const fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     const noReviews = document.createElement('p');
     noReviews.innerHTML = 'No reviews yet!';
     container.appendChild(noReviews);
-    return;
+  } else {
+    const ul = document.getElementById('reviews-list');
+    reviews.forEach(review => {
+      ul.appendChild(createReviewHTML(review));
+      container.appendChild(ul);
+    })
   }
-  const ul = document.getElementById('reviews-list');
-  reviews.forEach(review => {
-    ul.appendChild(createReviewHTML(review));
-  });
-  container.appendChild(ul);
+
+  const h3 = document.createElement('h3');
+  h3.innerHTML = "Leave a Review";
+  container.appendChild(h3);
+  const id = getParameterByName('id');
+  container.appendChild(reviewForm(id));
 }
 
 /**
