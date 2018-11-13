@@ -1,6 +1,6 @@
 # Mobile Web Specialist Certification Course
 ---
-#### _Three Stage Course Material Project - Restaurant Reviews - Phase 2_
+#### _Three Stage Course Material Project - Restaurant Reviews - Phase 3_
 
 ## How to use
 - Make sure you have installed Node.js globally
