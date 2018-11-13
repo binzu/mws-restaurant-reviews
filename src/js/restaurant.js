@@ -1,5 +1,5 @@
 import DBHelper from './dbhelper'
-// import './register'
+import './register'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css';
 
