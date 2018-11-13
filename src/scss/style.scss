@@ -404,11 +404,23 @@ nav.main-nav h1 a {
 }
 
 /* ====================== Favorite Button ====================== */
+#img-container {
+  position: relative;
+}
+
 button.fav {
   width: 100%;
   font-size: 1.5em;
-  border-radius: 0 0 15px 15px;
+  border-radius: 15px;
+  text-align: center;
   cursor: pointer;
+  position: absolute;
+  top: 6px;
+  width: 28px;
+  right: 5px;
+  padding: 0;
+  height: 30px;
+  width: 30px;
 }
 
 button.fav[aria-pressed=true] {
@@ -418,4 +430,24 @@ button.fav[aria-pressed=true] {
 button fav:hover,
 button.fav:focus {
   background-color: #B0BEC5;
+}
+
+
+/* ====================== Review Form ====================== */
+#review-form {
+  #name {
+    width: 50%;
+    padding: 6px;
+  }
+  #comments {
+    width: 100%;
+    padding: 6px;
+  }
+  button.add-review {
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: 800;
+    border-color: #999;
+    cursor: pointer;
+  }
 }
